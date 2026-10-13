@@ -1,14 +1,38 @@
-# PlayerBalancer
+# PlayerBalancerForVelocity
 
-**Overview**
+Fork of [PlayerBalancer](https://github.com/BGHDDevelopment/PlayerBalancer) focused on **Velocity**.
 
-Welcome to the PlayerBalancer repo! This resource helps balance players between servers in your network. This resource also has an API which allows for you to take handling to the next level.
-You can view the resource [here](https://www.spigotmc.org/resources/55011/) and the addon resource [here](https://www.spigotmc.org/resources/playerbalanceraddon.51220/).
+Balances players across servers/sections on a Velocity proxy (lobbies, games, etc.).
 
-**Issue Reporting/Support**
+## Build
 
-While you may report issues via the "Issues" tab I recommend putting them on our [Discord](https://bghddevelopment.com/discord) as it will be a faster response.
+```bash
+mvn clean package
+```
 
-**Build**
-* Clone this repository
-* Build with maven
+Main artifact:
+
+- `balancer-velocity/target/PlayerBalancer-Velocity-2.4.0.jar`
+
+Optional modules (Bungee / Spigot addon / PartyAndFriends) remain in the repo but are not required for Velocity.
+
+## Install
+
+1. Place the Velocity jar in the proxy `plugins` folder.
+2. Start the proxy once to generate `plugins/playerbalancer/plugin.conf`.
+3. Configure sections and set `general.enabled = true`.
+4. Restart or use `/balancer reload`.
+
+## Configuration
+
+See the comments in `plugin.conf` (generated from `velocity.conf`).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
+## License
+
+MIT (see [LICENSE](LICENSE)).
+
+Upstream: [BGHDDevelopment/PlayerBalancer](https://github.com/BGHDDevelopment/PlayerBalancer) (archived).
