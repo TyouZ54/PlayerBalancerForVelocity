@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replace deprecated `JsonParser` constructor usage with `JsonParser.parseString`
 - Disable remote update checker (upstream project is archived)
 - Point SCM / issue tracker to this repository
+- Bump maven-shade-plugin to 3.5.3 (fixes shade on modern JDKs)
 - Config header cleaned for Velocity fork
 
 ### Notes
