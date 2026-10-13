@@ -34,7 +34,7 @@ public class HastebinPaste {
         int status = con.getResponseCode();
         if (status >= 200 && status < 300) {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-                JsonObject root = new JsonParser().parse(br.readLine()).getAsJsonObject();
+                JsonObject root = JsonParser.parseString(br.readLine()).getAsJsonObject();
                 return new URL(site + root.getAsJsonPrimitive("key").getAsString());
             }
         } else {
