@@ -190,7 +190,7 @@ public final class ServerListPing {
         public static StatusResponse fromJson(String json) {
             StatusResponse response = new StatusResponse();
 
-            JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
             // Extract and set the "description" field as an Adventure Component
             JsonElement descriptionElement = jsonObject.get("description");
