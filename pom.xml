@@ -6,7 +6,7 @@
 
     <groupId>com.jaimemartz</groupId>
     <artifactId>playerbalancer-parent</artifactId>
-    <version>2.3.6</version>
+    <version>2.4.0</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -18,19 +18,19 @@
     </modules>
 
     <name>PlayerBalancerParent</name>
-    <description>PlayerBalancer is a BungeeCord plugin for setting up a network with multiple lobbies of different types.</description>
+    <description>PlayerBalancer fork focused on Velocity proxy support.</description>
     <inceptionYear>2015</inceptionYear>
     <url>https://www.spigotmc.org/resources/bungeecord-playerbalancer.10788/</url>
 
     <scm>
-        <connection>scm:git:https://github.com/jamezrin/PlayerBalancer.git</connection>
-        <developerConnection>scm:git:git@github.com:jamezrin/PlayerBalancer.git</developerConnection>
-        <url>https://github.com/jamezrin/PlayerBalancer</url>
+        <connection>scm:git:https://github.com/TyouZ54/PlayerBalancerForVelocity.git</connection>
+        <developerConnection>scm:git:git@github.com:TyouZ54/PlayerBalancerForVelocity.git</developerConnection>
+        <url>https://github.com/TyouZ54/PlayerBalancerForVelocity</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/BGHDDevelopment/PlayerBalancer/issues</url>
+        <url>https://github.com/TyouZ54/PlayerBalancerForVelocity/issues</url>
     </issueManagement>
 
     <properties>
@@ -59,12 +59,12 @@
                 <version>3.0.2</version>
             </plugin>
             <plugin>
-                <version>3.7.0</version>
+                <version>3.13.0</version>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -80,7 +80,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
