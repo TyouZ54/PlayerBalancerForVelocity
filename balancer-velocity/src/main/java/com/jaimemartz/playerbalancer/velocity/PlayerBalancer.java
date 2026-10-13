@@ -1,8 +1,6 @@
 package com.jaimemartz.playerbalancer.velocity;
 
 import com.google.common.reflect.TypeToken;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.inject.Inject;
 import com.jaimemartz.playerbalancer.velocity.commands.FallbackCommand;
 import com.jaimemartz.playerbalancer.velocity.commands.MainCommand;
@@ -39,21 +37,16 @@ import org.bstats.charts.SingleLineChart;
 import org.bstats.velocity.Metrics;
 import org.slf4j.Logger;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 
 @Plugin(
         id = "playerbalancer",
         name = "PlayerBalancer Velocity",
-        version = "2.3.6",
+        version = "2.4.0",
         description = "PlayerBalancer is a plugin for setting up a network with multiple lobbies of different types.",
         authors = {"jaime29010", "BGHDDevelopment", "HappyAreaBean"},
         dependencies = {
@@ -81,7 +74,7 @@ public class PlayerBalancer {
     private final Metrics.Factory metricsFactory;
     private final PluginContainer container;
     private final Path dataDirectory;
-    private String version = "2.3.6";
+    private String version = "2.4.0";
 
     @Inject
     public PlayerBalancer(ProxyServer proxyServer, Logger logger, Metrics.Factory metricsFactory, PluginContainer container, @DataDirectory Path dataDirectory) {
@@ -109,46 +102,7 @@ public class PlayerBalancer {
     }
 
     public void updateCheck() {
-        try {
-            Optional<String> pluginVersion = container.getDescription().getVersion();
-            if (!pluginVersion.isPresent()) return;
-            String urlString = "https://updatecheck.bghddevelopment.com";
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String input;
-            StringBuilder response = new StringBuilder();
-            while ((input = reader.readLine()) != null) {
-                response.append(input);
-            }
-            reader.close();
-            JsonObject object = new JsonParser().parse(response.toString()).getAsJsonObject();
-
-            if (object.has("plugins")) {
-                JsonObject plugins = object.get("plugins").getAsJsonObject();
-                JsonObject info = plugins.get("PlayerBalancer").getAsJsonObject();
-                String version = info.get("version").getAsString();
-                if (version.equals(getVersion())) {
-                    getLogger().info(("PlayerBalancer is on the latest version."));
-                } else {
-                    getLogger().warn("");
-                    getLogger().warn("");
-                    getLogger().warn("Your PlayerBalancer version is out of date!");
-                    getLogger().warn("We recommend updating ASAP!");
-                    getLogger().warn("");
-                    getLogger().warn("Your Version: " + pluginVersion.get());
-                    getLogger().warn("Newest Version: " + version);
-                    getLogger().warn("");
-                    getLogger().warn("");
-                }
-            } else {
-                logger.error("Wrong response from update API, contact plugin developer!");
-            }
-        } catch (Exception ex) {
-            logger.error("Failed to get updater check. (" + ex.getMessage() + ")");
-        }
+        // Remote update check disabled (fork of archived upstream).
     }
 
     @Subscribe
